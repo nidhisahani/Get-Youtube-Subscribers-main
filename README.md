@@ -31,8 +31,8 @@ Git commands:
 ```
 git clone https://github.com/nidhisahani/Get-Youtube-Subscribers-main.git
 npm istall
-cd src
-node createDatabase.js
+
+node src/createDatabase.js
 nodemon index.js
 ```
 
