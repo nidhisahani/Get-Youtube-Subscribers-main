@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express()
 const subscriber = require('./models/subscribers')
+const path =require('path')
 
 // Your code goes here
 
@@ -9,12 +10,11 @@ const subscriber = require('./models/subscribers')
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use(express.static('public'));
 
 
 //Api to render index.html page
 app.get('/', (req, res) => {
-  res.render('index.html');
+  res.sendFile(path.join(__dirname, "/index.html"));
 });
 
 
