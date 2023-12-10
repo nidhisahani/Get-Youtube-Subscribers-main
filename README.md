@@ -7,7 +7,7 @@
 
 ### APIs
 
-- "/" : This default route will render "index.ejs" file.
+- "/" : This default route will render "index.html" file.
 - "/subscribers" : This will respond with an array of subscribers.
 - "/subscribers/names" : This will respond with an array of subscribers with only two fields, name and subscribed channel.
 - "/subscribers/:id : This will response with the details of subscriber whose id is provided.
