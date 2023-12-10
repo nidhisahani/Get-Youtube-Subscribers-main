@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static('./'));
 
 
-//Api to render index.ejs page
+//Api to render index.html page
 app.get('/', (req, res) => {
   res.render('index.html');
 });
