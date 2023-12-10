@@ -29,7 +29,7 @@
 ### Run
 Git commands: 
 ```
-git clone https://github.com/nidhisahani/Get-Youtube-Subscribers-Mongo-Node.git
+git clone https://github.com/nidhisahani/Get-Youtube-Subscribers-main.git
 npm istall
 cd src
 node createDatabase.js
