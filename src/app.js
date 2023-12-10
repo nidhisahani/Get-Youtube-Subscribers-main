@@ -9,7 +9,7 @@ const subscriber = require('./models/subscribers')
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use(express.static('./'));
+app.use(express.static('public'));
 
 
 //Api to render index.html page
