@@ -19,17 +19,15 @@ app.get('/', (req, res) => {
 
 
 //Api to get all data 
-app.get('/subscribers', (req, res) => {
-
-  // finding all the subscribers data from schema
-  subscriber.collection.find().toArray((err, items) => {
-    if (err) {
-      res.status(400).send({ message: err.message }) // JSON response with a status code of 404 (Not Found) and the error message
-    }
-    res.status(200).json(items) //Response data
-  })
-
-})
+app.get("/subscribers", async (req, res, next) => {
+  try {
+    let subscribers = await subscriber.find(); // Retrieve all subscribers from the schema/model
+    res.status(200).json(subscribers); // Send the subscribers as a JSON response with a status of 200 (OK)
+  } catch (err) {
+    res.status(400); // Set the response status to 400 (Bad Request)
+    next(err); // Pass the error to the error handling middleware
+  }
+});
 
 
 //Api to get all subscribers by name and subscribed channel 
@@ -48,18 +46,26 @@ app.get("/subscribers/names", async (req, res) => {
 
 
 //Api to get subscribers by id 
-app.get("/subscribers/:id", async (req, res) => {
-  try {
+app.get("/subscribers/:id", async (req, res,next) => {
+  try{
     const id = req.params.id; // Extract ID from the request URL
 
     const subscribers = await subscriber.findById(id); // Find a subscriber data with given ID in the schema
-    if (!subscribers) {
-      res.status(404).json({ message: "Subscriber not found" }); //JSON response with a status code of 404 (Not Found)
+    
+    if(!subscribers){
+      res.status(400).json({ message: "Data not found" }); // JSON response with a status code of 400 (Bad Request) and the error message
+    }else{
+      res.status(200).json(subscribers); // Response data for the given id
+
     }
-    res.status(200).json(subscribers); // Response data for the given id
-  } catch (error) {
-    res.status(400).json({ message: error.message }); // JSON response with a status code of 400 (Bad Request) and the error message
+
   }
+  catch(error){
+    next(error)
+  }
+  
+    
+  
 });
 
 
